@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js"></script>
+
+    <script src='raphael.js' type='text/javascript' charset='utf-8'></script>
+    <script src='../jquery.raphael-iterator.js' type='text/javascript' charset='utf-8'></script>
+    <title>
+      many many tiny drawings with raphael.js
+    </title>
+    <style type="text/css" media="screen">
+      body {font-family: helvetica, arial, sans-serif}
+      #gallery_container {
+        position: fixed;
+        top: 100px;
+        left: 100px;
+        z-index: 10;
+      }
+      a {color: #999;}
+
+
+      #container .row {
+        height: 220px
+      }
+      #container .iteration {
+        width: 180px;
+        height: 180px;
+        margin: 10px;
+      }
+
+
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="gallery_container">
+        <div class='wall-text'>
+          <h2>
+            many many tiny drawings with raphael.js
+          </h2>
+          <h3>
+            for nonsense only. no promises. poor support
+          </h3>
+          <p>
+            this will fill your page with small drawings. each drawing is its own little Raphael paper object
+          </p>
+          <p>
+            you need a container, and a function that takes a Raphael paper object.
+          </p>
+          <p>
+            these are the default options: {interval: 1000, width: 100, height: 100, rowSize: 5}
+          </p>
+          <pre>
+var drawIt(paper) {
+  // try a few circles
+};
+
+$('div#your-container').
+  raphaelIterater(drawIt, options);
+          </pre>
+          <p>
+            you're going to have to add some of your own CSS. like this.
+          </p>
+          <pre>
+#container .row {
+  height: 220px
+}
+#container .iteration {
+  width: 180px;
+  height: 180px;
+  margin: 10px;
+}
+</pre>
+          <p>
+            <a href='http://the55.net/_12/iterate_and_repeat/1'>here's that working on the web</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" charset="utf-8">
+     var lines = 8,
+       size = 180,
+       rowSize = 5,
+       rowCount = 0;
+
+     var draw = function(paper) {
+       for (var i=0; i < 8; i++) {
+         paper.circle(Math.random()*size, Math.random()*size, Math.random()*size).attr({
+           stroke: '#9DD',
+           'stroke-width': 2//Math.random()*5
+         });
+       };
+     };
+
+     jQuery(function($) {
+       $('#container').raphaelIterator(draw, {interval: 1000, width: size, height: size})
+     });
+     // ---------------------------------------------------------------
+   </script>
+
+  </body>
+</html>
